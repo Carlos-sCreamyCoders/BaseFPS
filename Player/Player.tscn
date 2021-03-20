@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Player/Shotgun.gd" type="Script" id=2]
+[ext_resource path="res://Player/Rifle.gd" type="Script" id=2]
+[ext_resource path="res://Player/Interaction.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.75
@@ -20,9 +21,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98, 0 )
 
 [node name="Camera" type="Camera" parent="Head"]
 
-[node name="RayCast" type="RayCast" parent="Head/Camera"]
+[node name="WeaponRayCast" type="RayCast" parent="Head/Camera"]
 enabled = true
 cast_to = Vector3( 0, 0, -100 )
+
+[node name="InteractRayCast" type="RayCast" parent="Head/Camera"]
+script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
@@ -35,5 +39,3 @@ material/0 = null
 
 [node name="Weapon" type="Node" parent="."]
 script = ExtResource( 2 )
-fireTime = 1.0
-magSize = 2

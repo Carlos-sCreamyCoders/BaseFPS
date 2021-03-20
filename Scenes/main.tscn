@@ -103,3 +103,18 @@ text = "Ammo: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Interact" type="Label" parent="UI"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -142.0
+margin_top = -66.0
+margin_bottom = 7.0
+text = "Press E to interact"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
