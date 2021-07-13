@@ -1,89 +1,108 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Materials/mat_enemies.tres" type="Material" id=2]
+[ext_resource path="res://Materials/mat_floor.tres" type="Material" id=3]
+[ext_resource path="res://Materials/mat_wall.tres" type="Material" id=4]
+[ext_resource path="res://Interactable/interact_Door.gd" type="Script" id=5]
 
-[sub_resource type="PlaneMesh" id=3]
+[sub_resource type="PlaneMesh" id=1]
+material = ExtResource( 3 )
 size = Vector2( 50, 50 )
 
-[sub_resource type="ConvexPolygonShape" id=4]
+[sub_resource type="PhysicsMaterial" id=2]
+
+[sub_resource type="ConvexPolygonShape" id=3]
 points = PoolVector3Array( 50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, -50 )
 
-[sub_resource type="CubeMesh" id=5]
+[sub_resource type="CubeMesh" id=4]
+
+[sub_resource type="BoxShape" id=5]
 
 [sub_resource type="BoxShape" id=6]
+
+[sub_resource type="CubeMesh" id=7]
+
+[sub_resource type="BoxShape" id=11]
+
+[sub_resource type="CubeMesh" id=12]
 
 [node name="World" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
 [node name="Floor" type="MeshInstance" parent="."]
-mesh = SubResource( 3 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.630094, -0.0479927, 0.130937 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="Floor"]
+physics_material_override = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Floor/StaticBody"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
-[node name="Enemy" type="StaticBody" parent="." groups=[
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" type="StaticBody" parent="Enemies" groups=[
 "Enemies",
 ]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.354, 2.17501, 3.24807 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Enemy"]
-mesh = SubResource( 5 )
-material/0 = null
+[node name="MeshInstance" type="MeshInstance" parent="Enemies/Enemy"]
+mesh = SubResource( 4 )
+material/0 = ExtResource( 2 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Enemy"]
-shape = SubResource( 6 )
+[node name="CollisionShape" type="CollisionShape" parent="Enemies/Enemy"]
+shape = SubResource( 5 )
 
-[node name="Enemy2" type="StaticBody" parent="." groups=[
+[node name="Enemy2" type="StaticBody" parent="Enemies" groups=[
 "Enemies",
 ]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.354, 2.17501, 12.9118 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Enemy2"]
-mesh = SubResource( 5 )
-material/0 = null
+[node name="MeshInstance" type="MeshInstance" parent="Enemies/Enemy2"]
+mesh = SubResource( 4 )
+material/0 = ExtResource( 2 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Enemy2"]
-shape = SubResource( 6 )
+[node name="CollisionShape" type="CollisionShape" parent="Enemies/Enemy2"]
+shape = SubResource( 5 )
 
-[node name="Enemy3" type="StaticBody" parent="." groups=[
+[node name="Enemy3" type="StaticBody" parent="Enemies" groups=[
 "Enemies",
 ]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.354, 2.17501, -14.9871 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Enemy3"]
-mesh = SubResource( 5 )
-material/0 = null
+[node name="MeshInstance" type="MeshInstance" parent="Enemies/Enemy3"]
+mesh = SubResource( 4 )
+material/0 = ExtResource( 2 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Enemy3"]
-shape = SubResource( 6 )
+[node name="CollisionShape" type="CollisionShape" parent="Enemies/Enemy3"]
+shape = SubResource( 5 )
 
-[node name="Enemy4" type="StaticBody" parent="." groups=[
+[node name="Enemy4" type="StaticBody" parent="Enemies" groups=[
 "Enemies",
 ]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.384, 2.17501, -14.9871 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56819, 2.17501, 12.5401 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Enemy4"]
-mesh = SubResource( 5 )
-material/0 = null
+[node name="MeshInstance" type="MeshInstance" parent="Enemies/Enemy4"]
+mesh = SubResource( 4 )
+material/0 = ExtResource( 2 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Enemy4"]
-shape = SubResource( 6 )
+[node name="CollisionShape" type="CollisionShape" parent="Enemies/Enemy4"]
+shape = SubResource( 5 )
 
-[node name="Enemy5" type="StaticBody" parent="." groups=[
+[node name="Enemy5" type="StaticBody" parent="Enemies" groups=[
 "Enemies",
 ]]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.384, 2.17501, 11.1026 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.63051, 2.17501, 11.1026 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Enemy5"]
-mesh = SubResource( 5 )
-material/0 = null
+[node name="MeshInstance" type="MeshInstance" parent="Enemies/Enemy5"]
+mesh = SubResource( 4 )
+material/0 = ExtResource( 2 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Enemy5"]
-shape = SubResource( 6 )
+[node name="CollisionShape" type="CollisionShape" parent="Enemies/Enemy5"]
+shape = SubResource( 5 )
 
 [node name="UI" type="Control" parent="."]
 anchor_right = 1.0
@@ -118,3 +137,83 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="Wall1" type="StaticBody" parent="Walls"]
+transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 1, 0, -10, -25 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls/Wall1"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Walls/Wall1/CollisionShape"]
+mesh = SubResource( 7 )
+material/0 = ExtResource( 4 )
+
+[node name="Wall2" type="StaticBody" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 25, 0, 0, 0, 25, -25, -10, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls/Wall2"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Walls/Wall2/CollisionShape"]
+mesh = SubResource( 7 )
+material/0 = ExtResource( 4 )
+
+[node name="Wall4" type="StaticBody" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 25, 0, 0, 0, 25, 25, -10, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls/Wall4"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Walls/Wall4/CollisionShape"]
+mesh = SubResource( 7 )
+material/0 = ExtResource( 4 )
+
+[node name="Wall3" type="StaticBody" parent="Walls"]
+transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 1, 0, -10, 25 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls/Wall3"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Walls/Wall3/CollisionShape"]
+mesh = SubResource( 7 )
+material/0 = ExtResource( 4 )
+
+[node name="Lights" type="Node" parent="."]
+
+[node name="SpotLight" type="SpotLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, -0.20036, 0.979722, 0, -0.979722, -0.20036, 0, 36.776, -57.2276 )
+visible = false
+light_energy = 2.25
+light_indirect_energy = 14.95
+spot_range = 4096.0
+
+[node name="SpotLight2" type="SpotLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0 )
+visible = false
+light_energy = 3.05
+spot_range = 25.0
+spot_attenuation = 0.0769468
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 0.462987, 0.886365, 0, -0.886365, 0.462987, 0, 14.7221, -0.247011 )
+visible = false
+
+[node name="OmniLight" type="OmniLight" parent="Lights"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.5601, 0 )
+light_energy = 1.43
+omni_range = 4096.0
+
+[node name="Interactables" type="Node" parent="."]
+
+[node name="DaBox" type="StaticBody" parent="Interactables"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1741, 2.53958, 5.75853 )
+script = ExtResource( 5 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Interactables/DaBox"]
+shape = SubResource( 11 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Interactables/DaBox/CollisionShape"]
+mesh = SubResource( 12 )
+material/0 = null

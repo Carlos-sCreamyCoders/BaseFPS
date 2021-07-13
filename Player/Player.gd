@@ -21,9 +21,13 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		head.rotate_y(deg2rad(-event.relative.x * mouseSensitivity))
 		var xDelta = event.relative.y * mouseSensitivity
-		if cameraXroatation + xDelta > -90 and cameraXroatation - xDelta < 90:
+		if cameraXroatation + xDelta > -90 and cameraXroatation + xDelta < 90:
 			camera.rotate_x(deg2rad(-xDelta))
 			cameraXroatation += xDelta
+		if cameraXroatation < -90:
+			cameraXroatation = -90
+		if cameraXroatation > 90:
+			cameraXroatation = 90
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):

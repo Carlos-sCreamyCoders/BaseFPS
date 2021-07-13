@@ -31,7 +31,7 @@ func _process(delta):
 
 
 func checkColision():
-	print("yeeters")
+	print("shot")
 	if raycast.is_colliding():
 		var collider = raycast.get_collider()
 		if collider.is_in_group("Enemies"):
