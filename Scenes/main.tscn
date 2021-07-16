@@ -1,10 +1,12 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Materials/mat_enemies.tres" type="Material" id=2]
 [ext_resource path="res://Materials/mat_floor.tres" type="Material" id=3]
 [ext_resource path="res://Materials/mat_wall.tres" type="Material" id=4]
 [ext_resource path="res://Interactable/interact_Door.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/crosshair.png" type="Texture" id=6]
+[ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=7]
 
 [sub_resource type="PlaneMesh" id=1]
 material = ExtResource( 3 )
@@ -23,11 +25,14 @@ points = PoolVector3Array( 50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, -50 )
 
 [sub_resource type="CubeMesh" id=7]
 
-[sub_resource type="BoxShape" id=11]
+[sub_resource type="BoxShape" id=8]
 
-[sub_resource type="CubeMesh" id=12]
+[sub_resource type="CubeMesh" id=9]
 
 [node name="World" type="Spatial"]
+
+[node name="Enemy" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66516, 7.80059 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
@@ -138,6 +143,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Crosshair" type="TextureRect" parent="UI"]
+modulate = Color( 0, 1, 0.631373, 1 )
+self_modulate = Color( 0, 1, 0.843137, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -171.0
+margin_top = -127.0
+margin_right = 167.0
+margin_bottom = 139.0
+texture = ExtResource( 6 )
+expand = true
+
 [node name="Walls" type="Node" parent="."]
 
 [node name="Wall1" type="StaticBody" parent="Walls"]
@@ -212,8 +231,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1741, 2.53958, 5.75853 )
 script = ExtResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Interactables/DaBox"]
-shape = SubResource( 11 )
+shape = SubResource( 8 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Interactables/DaBox/CollisionShape"]
-mesh = SubResource( 12 )
+mesh = SubResource( 9 )
 material/0 = null
